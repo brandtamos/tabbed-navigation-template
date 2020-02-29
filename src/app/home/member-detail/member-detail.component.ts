@@ -37,6 +37,7 @@ export class MemberDetailComponent implements OnInit {
 
   onBackTap(): void {
     this.routerExtensions.back();
+    this.beers = [];
 }
 
 }

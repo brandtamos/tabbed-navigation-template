@@ -1,10 +1,12 @@
 <ActionBar>
     <NavigationButton (tap)="onBackTap()" android.systemIcon="ic_menu_back"></NavigationButton>
-    <Label [text]="member.name"></Label>
+    <Label>
+        <Span [text]="member.name" class="member-label" ></Span>
+    </Label>
 </ActionBar>
 
 <StackLayout>
-    <Label horizontalAlignment="center">
+    <Label class="beers-dranken">
         <FormattedString>
             <Span [text]="beersDrankenLabel" class="beers-dranken-label" ></Span>
         </FormattedString>
@@ -12,7 +14,11 @@
     <ListView [items]="beers">
         <ng-template let-item="item">
             <StackLayout>
-                <Label [text]="item.beerName" horizontalAlignment="center"></Label>
+                <Label horizontalAlignment="center">
+                    <FormattedString>
+                        <Span [text]="item.beerName" class="beer-label"></Span>
+                    </FormattedString>
+                </Label>
             </StackLayout>
         </ng-template>
     </ListView>

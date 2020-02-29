@@ -6,7 +6,11 @@
     <ListView [items]="membersBS | async">
         <ng-template let-item="item">
             <StackLayout [nsRouterLink]="['../member', item.memberId]">
-                <Label [text]="item.name" horizontalAlignment="center"></Label>
+                <Label horizontalAlignment="center">
+                    <FormattedString>
+                        <Span [text]="item.name" class="member-name" ></Span>
+                    </FormattedString>
+                </Label>
             </StackLayout>
         </ng-template>
     </ListView>
