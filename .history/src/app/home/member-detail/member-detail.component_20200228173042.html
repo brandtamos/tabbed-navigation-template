@@ -1,0 +1,23 @@
+<ActionBar>
+    <NavigationButton (tap)="onBackTap()" android.systemIcon="ic_menu_back"></NavigationButton>
+    <Label [text]="member.name"></Label>
+</ActionBar>
+
+<StackLayout>
+    <Label horizontalAlignment="center">
+        <Label.formattedText>
+            <FormattedString>
+              <FormattedString.spans>
+                <Span text="Beers Dranken" fontAttributes="Bold" />
+              </FormattedString.spans>
+            </FormattedString>
+          </Label.formattedText>
+    </Label>
+    <ListView [items]="beers">
+        <ng-template let-item="item">
+            <StackLayout>
+                <Label [text]="item.beerName" horizontalAlignment="center"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>

@@ -1,0 +1,15 @@
+<ActionBar>
+    <NavigationButton (tap)="onBackTap()" android.systemIcon="ic_menu_back"></NavigationButton>
+    <Label [text]="member.name"></Label>
+</ActionBar>
+
+<StackLayout>
+    <Label>Beers Dranken</Label>
+    <ListView [items]="beers">
+        <ng-template let-item="item">
+            <StackLayout>
+                <Label [text]="item.beerName" horizontalAlignment="center"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>

@@ -1,0 +1,16 @@
+<ActionBar>
+    <Label text="Home"></Label>
+</ActionBar>
+<StackLayout>
+    <SearchBar hint="Search for a member..." (textChange)="searchMembers($event)"></SearchBar>
+    <ListView [items]="membersBS | async">
+        <ng-template let-item="member">
+            <StackLayout>
+                <!-- <Label [nsRouterLink]="['../item', member.memberId]" [text]="member.name"></Label> -->
+                <Label [text]="member.name"></Label>
+                <Label [text]="member.beerCount"></Label>
+                
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>
