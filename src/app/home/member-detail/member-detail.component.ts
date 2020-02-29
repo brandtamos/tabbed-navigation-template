@@ -20,6 +20,10 @@ export class MemberDetailComponent implements OnInit {
   loading: boolean = true;
   loaderVisibility: string = 'visible';
 
+  draftIcon = 'font://&#xf0fc;';
+  bottleIcon = 'font://&#xf72f;';
+  //caskIcon = '';
+
   constructor(dataService: DataService, route: ActivatedRoute, routerExtensions: RouterExtensions) { 
     this.dataService = dataService;
     this.route = route;
@@ -40,8 +44,8 @@ export class MemberDetailComponent implements OnInit {
   }
 
   onBackTap(): void {
-    this.routerExtensions.back();
     this.beers = [];
+    this.routerExtensions.back();
   }
 
   private showLoader(): void {
@@ -52,6 +56,17 @@ export class MemberDetailComponent implements OnInit {
   private hideLoader(): void{
     this.loading = false;
     this.loaderVisibility = 'collapsed';
+  }
+
+  serveTypeIcon(serveTypeCode: string){
+    switch(serveTypeCode){
+      case '(D)':
+        return this.draftIcon;
+      case '(B)':
+        return this.bottleIcon;
+      default: //TODO: find cask icon
+        return this.draftIcon;
+    }
   }
 
 }
