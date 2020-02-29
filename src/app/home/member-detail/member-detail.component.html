@@ -6,6 +6,7 @@
 </ActionBar>
 
 <StackLayout>
+    <ActivityIndicator [busy]="loading" visibility="{{loaderVisibility}}"></ActivityIndicator>
     <Label class="beers-dranken">
         <FormattedString>
             <Span [text]="beersDrankenLabel" class="beers-dranken-label" ></Span>

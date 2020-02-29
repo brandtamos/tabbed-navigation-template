@@ -17,6 +17,8 @@ export class MemberDetailComponent implements OnInit {
   beers: Array<Beer>;
   member: Member;
   beersDrankenLabel: string
+  loading: boolean = false;
+  loaderVisibility: string = 'collapsed';
 
   constructor(dataService: DataService, route: ActivatedRoute, routerExtensions: RouterExtensions) { 
     this.dataService = dataService;
@@ -26,11 +28,13 @@ export class MemberDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showLoader();
     const memberId = this.route.snapshot.params.memberId;
     this.member = this.dataService.getMemberById(memberId);
     this.dataService.beers.subscribe(data =>{
       this.beers = data;
       this.beersDrankenLabel = 'Beers Dranken: ' + this.beers.length.toString();
+      this.hideLoader();
     });
     this.dataService.getMemberBeersByMemberId(memberId).subscribe();
   }
@@ -38,6 +42,16 @@ export class MemberDetailComponent implements OnInit {
   onBackTap(): void {
     this.routerExtensions.back();
     this.beers = [];
-}
+  }
+
+  private showLoader(): void {
+    this.loading = true;
+    this.loaderVisibility = 'visible';
+  }
+
+  private hideLoader(): void{
+    this.loading = false;
+    this.loaderVisibility = 'collapsed';
+  }
 
 }

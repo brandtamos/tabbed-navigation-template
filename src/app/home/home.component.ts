@@ -15,15 +15,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private members: Array<Member>;
     public dataService: DataService;
 
+    loading: boolean = false;
+    loaderVisibility: string = 'collapsed';
+
     constructor(dataService: DataService, private zone: NgZone) {
         this.dataService = dataService;
     }
 
     ngOnInit(): void {
+        this.showLoader();
         this.memberSubscription = this.dataService.members.subscribe(data =>{
             this.zone.run(() => {
                 this.members = data;
                 this.membersBS.next([...this.members]);
+                this.hideLoader();
             });
         });
         this.memberSubscription = this.dataService.getMembers().subscribe();
@@ -35,7 +40,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     searchMembers(event){
         const searchBar = event.object as SearchBar;
         const searchText = searchBar.text;
-        console.log(searchText);
         if(searchText == ''){
             this.zone.run(() => {
                 this.membersBS.next([...this.members]);
@@ -52,4 +56,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }
         
     }
+
+    private showLoader(): void {
+        this.loading = true;
+        this.loaderVisibility = 'visible';
+      }
+    
+      private hideLoader(): void{
+        this.loading = false;
+        this.loaderVisibility = 'collapsed';
+      }
 }
