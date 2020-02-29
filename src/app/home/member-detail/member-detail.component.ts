@@ -17,8 +17,8 @@ export class MemberDetailComponent implements OnInit {
   beers: Array<Beer>;
   member: Member;
   beersDrankenLabel: string
-  loading: boolean = false;
-  loaderVisibility: string = 'collapsed';
+  loading: boolean = true;
+  loaderVisibility: string = 'visible';
 
   constructor(dataService: DataService, route: ActivatedRoute, routerExtensions: RouterExtensions) { 
     this.dataService = dataService;

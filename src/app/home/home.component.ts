@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private members: Array<Member>;
     public dataService: DataService;
 
-    loading: boolean = false;
-    loaderVisibility: string = 'collapsed';
+    loading: boolean = true;
+    loaderVisibility: string = 'visible';
 
     constructor(dataService: DataService, private zone: NgZone) {
         this.dataService = dataService;
